@@ -1,0 +1,19 @@
+
+
+<ion-card color="mikado-yellow">
+  <ion-card-header>
+    <ion-card-title>
+      <ion-label>Create Your Own Recipe</ion-label>
+    </ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <form #recipeForm="ngForm" (ngSubmit)="submit(recipeForm)">
+      <ion-input label="Your Recepe Name" name="name" [(ngModel)]="recipe.name"></ion-input>
+      <ion-textarea label="Ingredients" name="ingredients" [(ngModel)]="recipe.ingredients"></ion-textarea>
+      <ion-textarea label="Procedures" name="steps" [(ngModel)]="recipe.steps"></ion-textarea>
+      <ion-button expand="block" type="submit" [disabled]="!recipeForm.valid">
+        Submit
+      </ion-button>
+    </form>
+  </ion-card-content>
+</ion-card>

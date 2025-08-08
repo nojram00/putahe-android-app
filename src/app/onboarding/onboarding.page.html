@@ -1,0 +1,44 @@
+
+<ion-content [fullscreen]="true" color="school-bus-yellow">
+  <swiper-container #swiper [pagination]="true" (swiperready)="swiperReady()">
+    <swiper-slide>
+      <div class="container">
+        <img src="../../assets/images/chef.png" alt="">
+        <div class="body">
+          <span>Recipes comes from famous chefs and cooks.</span>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus fugiat libero a repudiandae praesentium? Necessitatibus dolorum nisi, sint accusamus aspernatur error odio! Eos illo nobis ad numquam ab unde ipsam?</p>
+        </div>
+
+        <ion-button (click)="next()" color="orange-web">
+          Next
+        </ion-button>
+      </div>
+    </swiper-slide>
+
+    <swiper-slide>
+      <div class="container">
+        <img src="../../assets/images/plates.png" alt="">
+        <div class="body">
+          <span>All Recipes: good and appeticing</span>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore id, iste minima tempore quidem dignissimos deserunt quis odio totam cumque beatae maxime recusandae provident amet ipsam? Voluptates nemo in dolorem?</p>
+        </div>
+        <ion-button color="orange-web" (click)="next()">
+          Next
+        </ion-button>
+      </div>
+    </swiper-slide>
+
+    <swiper-slide>
+      <div class="container">
+        <img src="../../assets/images/chef-2.jpg" alt="">
+        <div class="body">
+          <span>Discover delicacies and specialties.</span>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore id, iste minima tempore quidem dignissimos deserunt quis odio totam cumque beatae maxime recusandae provident amet ipsam? Voluptates nemo in dolorem?</p>
+        </div>
+        <ion-button color="orange-web" (click)="letsGo()">
+          Lets Go!
+        </ion-button>
+      </div>
+    </swiper-slide>
+  </swiper-container>
+</ion-content>

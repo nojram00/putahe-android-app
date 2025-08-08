@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { IonModal } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab2',
@@ -8,6 +9,11 @@ import { Component } from '@angular/core';
 })
 export class Tab2Page {
 
+  @ViewChild('modal') modal! : IonModal
   constructor() {}
+
+  closeModal(){
+    this.modal.dismiss(null, 'cancel');
+  }
 
 }

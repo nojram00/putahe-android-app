@@ -1,17 +1,35 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar color="canary">
     <ion-title>
-      Tab 2
+      My Recipes
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" color="dark-orange-web">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
+      <ion-title size="large">My Recepes</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <ion-button id="open-modal" expand="block">Add A new Recipe</ion-button>
+  <app-recipe-list></app-recipe-list>
+  <ion-modal #modal trigger="open-modal">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar color="canary">
+          <ion-title>
+            Add Recipe
+          </ion-title>
+          <ion-button class="close-btn" slot="end" (click)="closeModal()">
+            Close
+          </ion-button>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding" color="dark-orange-web">
+        <app-create-recipe-form></app-create-recipe-form>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 </ion-content>

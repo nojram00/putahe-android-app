@@ -1,0 +1,39 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100vw;
+  min-height: 100vh;
+
+  img {
+    padding: 12px;
+    max-width: 20rem;
+    max-height: 20rem;
+  }
+
+  .body {
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    span {
+      font-size: 1rem;
+      font-weight: 500;
+    }
+
+    p {
+      font-size: .8rem;
+      font-weight: 100;
+    }
+  }
+}
+
+ion-button {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin-bottom: 5rem;
+}

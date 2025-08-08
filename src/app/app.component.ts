@@ -1,4 +1,9 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { Preferences } from '@capacitor/preferences';
+import { register } from 'swiper/element/bundle';
+
+register()
 
 @Component({
   selector: 'app-root',
@@ -7,5 +12,13 @@ import { Component } from '@angular/core';
   standalone: false,
 })
 export class AppComponent {
-  constructor() {}
+  constructor(private router: Router) {
+    Preferences.get({ key: 'doneOnboarding'}).then((value) => {
+      if(value.value === 'true'){
+        router.navigate(['/'])
+      }else{
+        router.navigate(['/onboarding'])
+      }
+    })
+  }
 }
