@@ -1,0 +1,64 @@
+.container {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// ion-input {
+  // --highlight-color-focused: var(--ion-color-princeton-orange); /* Removes the focus underline */
+//   --highlight-color: transparent;         /* Removes hover underline */
+//   border: none;                            /* Optional */
+//   box-shadow: none;                        /* Optional */
+// }
+
+// ion-input .native-input {
+//   border: none !important;
+//   box-shadow: none !important;
+// }
+
+.input-field {
+  background-color: white;
+  border-radius: 15px;
+  border: 2px solid transparent;
+  --padding-start: 8px;
+  --padding-end: 8px;
+  --padding-top: 2px;
+  --padding-bottom: 2px;
+
+  :focus {
+    border-color: var(--ion-color-princeton-orange);
+  }
+}
+
+// .input-field.ion-focused {
+//   border-color: var(--ion-color-princeton-orange);
+// }
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  width: 100%;
+
+  .horizontal-line {
+    background: white;
+    height: 1px;
+    flex: 1;
+  }
+}
+
+.google{
+  margin-right: 10px;
+}
+
+.footer {
+  margin-top: 10px;
+}

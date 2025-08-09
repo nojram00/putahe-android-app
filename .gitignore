@@ -74,4 +74,5 @@ Thumbs.db
 *-debug.log
 .runtimeconfig.json
 
-.vscode
+/.vscode
+/android-build

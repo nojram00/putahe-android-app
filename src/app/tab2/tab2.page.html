@@ -1,24 +1,53 @@
 <ion-header [translucent]="true">
-  <ion-toolbar color="canary">
+  <ion-toolbar color="tertiary">
     <ion-title>
       My Recipes
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" color="dark-orange-web">
+<ion-content [fullscreen]="true" color="secondary">
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">My Recepes</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <ion-button id="open-modal" expand="block">Add A new Recipe</ion-button>
-  <app-recipe-list></app-recipe-list>
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button>
+      <ion-icon name="add" id="open-modal"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <div>
+    <div id="loader" *ngIf="myRecipes$.length == 0; else recipeContent">
+      <!-- <ion-title>No Recipes found...</ion-title> -->
+       <ion-spinner id="spinner"></ion-spinner>
+    </div>
+    <ng-template #recipeContent>
+      <ion-grid>
+        <!-- Recipe list content goes here -->
+         <ion-row *ngFor="let recipe of myRecipes$">
+          <ion-col>
+            <ion-card>
+              <ion-card-header>
+                <ion-card-title>
+                  {{ recipe.name }}
+                </ion-card-title>
+              </ion-card-header>
+              <ion-card-content>
+                <ion-button (click)="viewInfo(recipe)">View Recipe</ion-button>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+         </ion-row>
+      </ion-grid>
+    </ng-template>
+  </div>
   <ion-modal #modal trigger="open-modal">
     <ng-template>
       <ion-header>
-        <ion-toolbar color="canary">
+        <ion-toolbar color="tertiary">
           <ion-title>
             Add Recipe
           </ion-title>
@@ -27,7 +56,7 @@
           </ion-button>
         </ion-toolbar>
       </ion-header>
-      <ion-content class="ion-padding" color="dark-orange-web">
+      <ion-content class="ion-padding" color="secondary">
         <app-create-recipe-form></app-create-recipe-form>
       </ion-content>
     </ng-template>

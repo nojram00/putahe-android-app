@@ -1,0 +1,49 @@
+<ion-content [fullscreen]="true" color="secondary">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">auth-screen</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="container">
+    <ion-card color="primary">
+      <ion-card-header>
+        <ion-card-title>
+          <ion-label>
+            {{ greeting }}
+          </ion-label>
+        </ion-card-title>
+        <ion-card-subtitle>
+          <p>To Continue, Please Login</p>
+        </ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <form #loginForm="ngForm" (submit)="formRegistration(loginForm)">
+          <ion-input type="email" name="email" color="success" placeholder="Email Address"></ion-input>
+          <ion-input type="password" name="password" color="success" placeholder="Password">
+            <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+          </ion-input>
+
+          <ion-button color="success" type="submit">Login</ion-button>
+        </form>
+        <div class="divider">
+          <span class="horizontal-line"></span>
+          <span>Or</span>
+          <span class="horizontal-line"></span>
+        </div>
+
+        <div>
+          <ion-button (click)="googleLogin()" expand="block" color="success">
+            <span class="google">Login via Google</span>
+            <ion-icon name="logo-google"></ion-icon>
+          </ion-button>
+
+          <!-- <ion-button (click)="checkUser()">Check User</ion-button> -->
+        </div>
+        <div class="footer">
+          <p>Login for First Time? Register here</p>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

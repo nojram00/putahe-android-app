@@ -1,13 +1,38 @@
 <ion-header [translucent]="true">
-  <ion-toolbar color="canary">
+  <ion-toolbar color="tertiary">
     <ion-title>My Profile</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" color="dark-orange-web">
+<ion-content [fullscreen]="true" color="secondary">
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">My Profile</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <ion-card color="primary">
+    <ion-card-header>
+      <ion-card-title>
+        <ion-label>Profile Details</ion-label>
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list lines="none" class="list">
+        <ion-item color="primary">
+          <ion-icon name="person"></ion-icon>
+          <span>{{ user$!.displayName }}</span>
+        </ion-item>
+        <ion-item color="primary">
+          <ion-icon name="mail"></ion-icon>
+          <span>{{ user$!.email }}</span>
+        </ion-item>
+        <ion-item color="primary">
+          <ion-button (click)="logout()" color="warning">Logout</ion-button>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- <ion-button (click)="check()">Check User</ion-button> -->
 </ion-content>

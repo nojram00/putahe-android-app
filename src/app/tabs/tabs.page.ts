@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { FireauthService } from '../services/fireauth.service';
 
 @Component({
   selector: 'app-tabs',
@@ -6,8 +8,12 @@ import { Component } from '@angular/core';
   styleUrls: ['tabs.page.scss'],
   standalone: false,
 })
-export class TabsPage {
+export class TabsPage implements OnInit {
 
-  constructor() {}
+  constructor(private router: Router, private fireauth: FireauthService) {}
+
+  ngOnInit(): void {
+    console.log("User: ", this.fireauth.checkAuth());
+  }
 
 }

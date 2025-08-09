@@ -1,5 +1,6 @@
-<div *ngIf="recipeList.length == 0; else recipeContent">
-  <ion-title>No Recipes found...</ion-title>
+<div id="loader" *ngIf="recipeList.length == 0; else recipeContent">
+  <!-- <ion-title>No Recipes found...</ion-title> -->
+   <ion-spinner id="spinner"></ion-spinner>
 </div>
 <ng-template #recipeContent>
   <ion-grid>
@@ -11,9 +12,12 @@
             <ion-card-title>
               {{ recipe.name }}
             </ion-card-title>
+            <ion-card-subtitle>
+              <p>{{ recipe.user_info.name }}</p>
+            </ion-card-subtitle>
           </ion-card-header>
           <ion-card-content>
-
+            <ion-button (click)="viewInfo(recipe)">View Recipe</ion-button>
           </ion-card-content>
         </ion-card>
       </ion-col>
