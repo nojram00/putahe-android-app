@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, getRedirectResult, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signInWithRedirect } from '@angular/fire/auth';
 import { FirestoreService } from './firestore.service';
+import { FirebaseAuthentication } from '@capacitor-firebase/authentication';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,10 @@ export class FireauthService {
   loginViaGoogle(){
     const provider = new GoogleAuthProvider();
     return signInWithPopup(this.auth, provider)
+  }
+
+  mobileLoginViaGoogle(){
+    return FirebaseAuthentication.signInWithGoogle();
   }
 
   loginViaGoogleRedirect(){

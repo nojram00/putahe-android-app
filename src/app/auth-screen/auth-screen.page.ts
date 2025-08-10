@@ -62,32 +62,57 @@ export class AuthScreenPage implements OnInit {
   }
 
   googleLogin() {
-    this.fireauth.loginViaGoogle().then((user) => {
-      if (user.user.uid) {
-        const userData = this.firestore.find('users', user.user.uid);
+    console.log('Starting Google login...');
 
-        if (userData == null) {
-          this.firestore.createWithCustomId(
-            { email: user.user.email },
-            'users',
-            user.user.uid
-          );
-        }
-
-        this.firestore.find('users', user.user.uid);
-
+    if(this.platform.is('android') || this.platform.is('ios') || this.platform.is('mobile')){
+      this.fireauth.mobileLoginViaGoogle().then(result => {
+        console.log('Google login successful:', result)
         this.router.navigate(['/']);
-      }
-    });
+      }).catch(error => {
+        console.error('Google login error:', error)
+        this.toastCtrl.create({
+          message: 'Google login failed: ' + error.message,
+          duration: 3000
+        }).then(toast => {
+          toast.present()
+        })
+      })
+    }
+    else {
+      this.fireauth.loginViaGoogle().then((user) => {
+        console.log('Google login successful:', user);
+        if (user.user.uid) {
+          const userData = this.firestore.find('users', user.user.uid);
+
+          if (userData == null) {
+            this.firestore.createWithCustomId(
+              { email: user.user.email },
+              'users',
+              user.user.uid
+            );
+          }
+
+          this.firestore.find('users', user.user.uid);
+
+          this.router.navigate(['/']);
+        }
+      }).catch((error) => {
+        console.error('Google login error:', error);
+        this.toastCtrl.create({
+          message: 'Google login failed: ' + error.message,
+          duration: 3000
+        }).then(toast => {
+          toast.present()
+        })
+      });
+    }
+
+
   }
 
   googleRedirect(){
-    // Use popup for mobile, redirect for web
-    if (this.platform.is('mobile') || this.platform.is('hybrid')) {
-      this.googleLogin()
-    } else {
-      this.fireauth.loginViaGoogleRedirect()
-    }
+    // Use redirect for both mobile and web
+    this.fireauth.loginViaGoogleRedirect()
   }
 
   formLogin(form: NgForm) {
