@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup } from '@angular/fire/auth';
+import { Auth, createUserWithEmailAndPassword, getRedirectResult, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signInWithRedirect } from '@angular/fire/auth';
 import { FirestoreService } from './firestore.service';
 
 @Injectable({
@@ -14,12 +14,17 @@ export class FireauthService {
     return signInWithPopup(this.auth, provider)
   }
 
+  loginViaGoogleRedirect(){
+    const provider = new GoogleAuthProvider();
+    return signInWithRedirect(this.auth, provider)
+  }
+
   loginWithCreds(email: string, password: string){
     return signInWithEmailAndPassword(this.auth, email, password)
   }
 
   registerWithCreds(email: string, password: string){
-    createUserWithEmailAndPassword(this.auth, email, password)
+    return createUserWithEmailAndPassword(this.auth, email, password)
   }
 
   logout(){
@@ -28,6 +33,10 @@ export class FireauthService {
 
   checkAuth(){
     return this.auth.currentUser
+  }
+
+  async handleRedirect(){
+    return await getRedirectResult(this.auth)
   }
 
   waitForAuth(): Promise<void> {

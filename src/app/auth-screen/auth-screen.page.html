@@ -18,7 +18,7 @@
         </ion-card-subtitle>
       </ion-card-header>
       <ion-card-content>
-        <form #loginForm="ngForm" (submit)="formRegistration(loginForm)">
+        <form #loginForm="ngForm" (submit)="formLogin(loginForm)">
           <ion-input type="email" name="email" color="success" placeholder="Email Address"></ion-input>
           <ion-input type="password" name="password" color="success" placeholder="Password">
             <ion-input-password-toggle slot="end"></ion-input-password-toggle>
@@ -33,7 +33,7 @@
         </div>
 
         <div>
-          <ion-button (click)="googleLogin()" expand="block" color="success">
+          <ion-button (click)="googleRedirect()" expand="block" color="success">
             <span class="google">Login via Google</span>
             <ion-icon name="logo-google"></ion-icon>
           </ion-button>
@@ -41,9 +41,40 @@
           <!-- <ion-button (click)="checkUser()">Check User</ion-button> -->
         </div>
         <div class="footer">
-          <p>Login for First Time? Register here</p>
+          <p>Login for First Time?</p>
+          <ion-button id="open-modal" color="success" expand="block">Signup</ion-button>
         </div>
       </ion-card-content>
     </ion-card>
   </div>
+
+  <ion-modal #modal trigger="open-modal">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar color="tertiary">
+          <ion-title>Sign Up</ion-title>
+          <ion-button class="close-modal-btn" slot="end" (click)="closeModal()" color="warning">Close</ion-button>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content color="secondary">
+        <ion-card color="primary">
+          <ion-card-header>
+            <ion-card-subtitle>
+              Fill Up the form to register
+            </ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <form #regForm="ngForm" (submit)="formRegistration(regForm)">
+              <ion-input type="email" name="email" color="success" placeholder="Email Address"></ion-input>
+              <ion-input type="password" name="password" color="success" placeholder="Password">
+                <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+              </ion-input>
+
+              <ion-button color="success" type="submit">Sign Up</ion-button>
+            </form>
+          </ion-card-content>
+        </ion-card>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 </ion-content>
