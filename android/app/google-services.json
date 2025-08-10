@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "76973339049",
+    "project_id": "putahe-mobile-app",
+    "storage_bucket": "putahe-mobile-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:76973339049:android:ac46598fe22c5f11ab14b8",
+        "android_client_info": {
+          "package_name": "com.putahe.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "76973339049-9tefqbigroqbictktrfqkiarl5o6v1g9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBWNxJkpPoV__L8lkHpS_2PMH4T0K6rL_g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "76973339049-9tefqbigroqbictktrfqkiarl5o6v1g9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
