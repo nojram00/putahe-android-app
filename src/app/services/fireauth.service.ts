@@ -28,16 +28,36 @@ export class FireauthService {
     return signInWithEmailAndPassword(this.auth, email, password)
   }
 
+  mobileLoginWithCreds(email: string, password: string){
+    return FirebaseAuthentication.signInWithEmailAndPassword({
+      email, password
+    });
+  }
+
   registerWithCreds(email: string, password: string){
     return createUserWithEmailAndPassword(this.auth, email, password)
+  }
+
+  mobileRegisterWithCreds(email: string, password: string){
+    return FirebaseAuthentication.createUserWithEmailAndPassword({
+      email, password
+    });
   }
 
   logout(){
     return this.auth.signOut()
   }
 
+  mobileLogout(){
+    return FirebaseAuthentication.signOut();
+  }
+
   checkAuth(){
     return this.auth.currentUser
+  }
+
+  mobileCheckAuth(){
+    return FirebaseAuthentication.getCurrentUser();
   }
 
   async handleRedirect(){

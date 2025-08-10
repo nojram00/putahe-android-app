@@ -18,6 +18,8 @@ export class Tab2Page implements OnInit {
 
   myRecipes$ : IRecipe[] = []
 
+  $user : any | null = null;
+
   constructor(private firestore: FirestoreService, private fireauth: FireauthService, private modalCtrl: ModalController) {}
 
   closeModal(){
@@ -26,6 +28,10 @@ export class Tab2Page implements OnInit {
 
   ngOnInit(): void {
       this.initializeFetch()
+
+      this.fireauth.mobileCheckAuth().then(res => {
+        this.$user = res.user
+      })
   }
 
   async initializeFetch(){
@@ -34,7 +40,7 @@ export class Tab2Page implements OnInit {
     this.firestore.findByQuery('recipes', {
       property: 'user_id',
       operator: '==',
-      value: this.fireauth.checkAuth()?.uid
+      value: this.$user.uid
     }).pipe().subscribe({
       next: (response) => {
         console.log("Response: ", response)

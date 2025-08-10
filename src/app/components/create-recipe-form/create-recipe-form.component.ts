@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ToastController } from '@ionic/angular';
+import { Platform, ToastController } from '@ionic/angular';
 import { IRecipeInput } from 'src/app/interfaces/recipe';
 import { FireauthService } from 'src/app/services/fireauth.service';
 import { FirestoreService } from 'src/app/services/firestore.service';
@@ -13,6 +13,8 @@ import { FirestoreService } from 'src/app/services/firestore.service';
 })
 export class CreateRecipeFormComponent implements OnInit {
   @ViewChild('recipeForm') recipeForm: any;
+
+  user$ : any | null = null;
 
   name: string = '';
   ingredients: string = '';
@@ -27,10 +29,19 @@ export class CreateRecipeFormComponent implements OnInit {
   constructor(
     private firestoreService: FirestoreService,
     private fireauth: FireauthService,
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController,
+    private platform: Platform
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    if(this.platform.is('android') || this.platform.is('ios') || this.platform.is('mobile')){
+      this.fireauth.mobileCheckAuth().then((res) => {
+        this.user$ = res.user
+      })
+    }else{
+      this.user$ = this.fireauth.checkAuth();
+    }
+  }
 
   async submit(form: NgForm) {
     await this.fireauth.waitForAuth();
@@ -38,10 +49,10 @@ export class CreateRecipeFormComponent implements OnInit {
       console.log(form.value);
 
       const data = {
-        user_id : this.fireauth.checkAuth()?.uid,
+        user_id : this.user$.uid,
         user_info: {
-          email: this.fireauth.checkAuth()?.email,
-          name: this.fireauth.checkAuth()?.displayName
+          email: this.user$.email,
+          name: this.user$.displayName
         },
         ...form.value,
         created_at: Date.now().toLocaleString(),
