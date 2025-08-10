@@ -19,8 +19,8 @@
       </ion-card-header>
       <ion-card-content>
         <form #loginForm="ngForm" (submit)="formLogin(loginForm)">
-          <ion-input type="email" name="email" color="success" placeholder="Email Address"></ion-input>
-          <ion-input type="password" name="password" color="success" placeholder="Password">
+          <ion-input type="email" name="email" ngModel color="success" placeholder="Email Address"></ion-input>
+          <ion-input type="password" name="password" ngModel color="success" placeholder="Password">
             <ion-input-password-toggle slot="end"></ion-input-password-toggle>
           </ion-input>
 
@@ -33,7 +33,7 @@
         </div>
 
         <div>
-          <ion-button (click)="googleRedirect()" expand="block" color="success">
+          <ion-button (click)="googleLogin()" expand="block" color="success">
             <span class="google">Login via Google</span>
             <ion-icon name="logo-google"></ion-icon>
           </ion-button>
@@ -65,8 +65,8 @@
           </ion-card-header>
           <ion-card-content>
             <form #regForm="ngForm" (submit)="formRegistration(regForm)">
-              <ion-input type="email" name="email" color="success" placeholder="Email Address"></ion-input>
-              <ion-input type="password" name="password" color="success" placeholder="Password">
+              <ion-input type="email" name="email" ngModel color="success" placeholder="Email Address"></ion-input>
+              <ion-input type="password" name="password" ngModel color="success" placeholder="Password">
                 <ion-input-password-toggle slot="end"></ion-input-password-toggle>
               </ion-input>
 

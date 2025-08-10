@@ -3,7 +3,7 @@ import { FireauthService } from '../services/fireauth.service';
 import { Router } from '@angular/router';
 import { FirestoreService } from '../services/firestore.service';
 import { NgForm } from '@angular/forms';
-import { IonModal, ModalController, ToastController } from '@ionic/angular';
+import { IonModal, ModalController, ToastController, Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-auth-screen',
@@ -20,7 +20,8 @@ export class AuthScreenPage implements OnInit {
     private fireauth: FireauthService,
     private router: Router,
     private firestore: FirestoreService,
-    private toastCtrl : ToastController
+    private toastCtrl : ToastController,
+    private platform: Platform
   ) {
     // if(this.fireauth.checkAuth() != null){
     //   console.log('User is already logged in')
@@ -81,7 +82,12 @@ export class AuthScreenPage implements OnInit {
   }
 
   googleRedirect(){
-    this.fireauth.loginViaGoogleRedirect()
+    // Use popup for mobile, redirect for web
+    if (this.platform.is('mobile') || this.platform.is('hybrid')) {
+      this.googleLogin()
+    } else {
+      this.fireauth.loginViaGoogleRedirect()
+    }
   }
 
   formLogin(form: NgForm) {
@@ -111,7 +117,8 @@ export class AuthScreenPage implements OnInit {
         const userData = this.firestore.find('users', user.user.uid);
         if(userData != null){
           this.toastCtrl.create({
-            message: 'User Already Exists. Please Login.'
+            message: 'User Already Exists. Please Login.',
+            duration: 3000
           }).then(toast => {
             toast.present()
           })
